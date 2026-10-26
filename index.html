@@ -4,8 +4,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="국민대학교 경영정보학과 학생의 개인 홈페이지">
-  <title>About Me | 나의 개인 홈페이지</title>
+  <meta name="description" content="국민대학교 경영정보학과 학생 노윤하의 개인 홈페이지">
+  <meta name="author" content="노윤하">
+  <title>About Me | 노윤하</title>
+
+  <!-- 링크 공유 시 미리보기(Open Graph) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="About Me | 노윤하">
+  <meta property="og:description" content="국민대학교 경영정보학과에 재학 중인 노윤하의 개인 홈페이지입니다.">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="About Me | 노윤하">
+  <meta name="twitter:description" content="국민대학교 경영정보학과에 재학 중인 노윤하의 개인 홈페이지입니다.">
 
   <style>
     * {
@@ -29,6 +39,31 @@
     a {
       text-decoration: none;
       color: inherit;
+    }
+
+    /* 키보드 사용자를 위한 본문 바로가기 */
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 10px;
+      z-index: 200;
+      background: #5575ef;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .skip-link:focus {
+      left: 16px;
+    }
+
+    /* 포커스 가시성 (키보드 탐색) */
+    a:focus-visible,
+    .button:focus-visible {
+      outline: 3px solid #91a8ff;
+      outline-offset: 3px;
     }
 
     .container {
@@ -197,7 +232,7 @@
     }
 
     .section-desc {
-      color: #7b8499;
+      color: #5e6880;
       font-size: 14px;
       max-width: 650px;
     }
@@ -212,7 +247,7 @@
 
     .about-text p {
       margin-top: 17px;
-      color: #68738b;
+      color: #515b73;
       font-size: 14px;
     }
 
@@ -280,7 +315,7 @@
     }
 
     .card p {
-      color: #788197;
+      color: #5e6880;
       font-size: 13px;
     }
 
@@ -319,6 +354,33 @@
 
     .contact .section-desc {
       margin: auto;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border: 1px solid #d8def0;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #39456a;
+      transition: 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: #5575ef;
+      color: #5575ef;
+      transform: translateY(-2px);
     }
 
     footer {
@@ -400,6 +462,8 @@
 
 <body>
 
+<a href="#main" class="skip-link">본문 바로가기</a>
+
 <header>
   <nav class="container">
     <a href="#home" class="logo">ABOUT<span>ME.</span></a>
@@ -412,7 +476,7 @@
   </nav>
 </header>
 
-<main>
+<main id="main">
 
   <!-- 메인 화면 -->
   <section class="hero" id="home">
@@ -431,7 +495,7 @@
         <a href="#about" class="button">ABOUT ME ↓</a>
       </div>
 
-      <div class="profile-art">
+      <div class="profile-art" aria-hidden="true">
         <div class="profile-icon">✦</div>
       </div>
     </div>
@@ -490,7 +554,7 @@
 
       <div class="cards">
         <article class="card reveal">
-          <div class="card-icon">📊</div>
+          <div class="card-icon" aria-hidden="true">📊</div>
           <h3>데이터 분석</h3>
           <p>
             데이터를 분석해 의미 있는 정보를 발견하고,
@@ -499,7 +563,7 @@
         </article>
 
         <article class="card reveal">
-          <div class="card-icon">💻</div>
+          <div class="card-icon" aria-hidden="true">💻</div>
           <h3>정보기술</h3>
           <p>
             프로그래밍과 정보시스템을 배우고,
@@ -508,7 +572,7 @@
         </article>
 
         <article class="card reveal">
-          <div class="card-icon">📈</div>
+          <div class="card-icon" aria-hidden="true">📈</div>
           <h3>디지털 비즈니스</h3>
           <p>
             디지털 기술이 기업의 운영과 경영전략,
@@ -548,8 +612,21 @@
       <h2>제 홈페이지를 방문해 주셔서 감사합니다.</h2>
       <p class="section-desc">
         앞으로도 다양한 경험을 통해 배우고 성장하는 모습을 만들어 가겠습니다.
+        궁금한 점이 있다면 아래로 편하게 연락 주세요.
       </p>
-      <a href="#home" class="button">맨 위로 돌아가기 ↑</a>
+
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:your-email@example.com">
+          <span aria-hidden="true">✉️</span> 이메일
+        </a>
+        <a class="contact-link" href="https://github.com/nxyunha" target="_blank" rel="noopener noreferrer">
+          <span aria-hidden="true">🔗</span> GitHub
+        </a>
+      </div>
+
+      <div style="margin-top: 30px;">
+        <a href="#home" class="button">맨 위로 돌아가기 ↑</a>
+      </div>
     </div>
   </section>
 
