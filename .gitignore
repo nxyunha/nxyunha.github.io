@@ -1,0 +1,17 @@
+# 의존성
+node_modules/
+
+# 환경변수·비밀값 (절대 공개 금지)
+.env
+.env.*
+!.env.example
+
+# Netlify 로컬 작업 폴더
+.netlify/
+
+# 개인 기록 / 에디터 설정
+.kiro/
+
+# OS 생성 파일
+.DS_Store
+Thumbs.db

@@ -1,0 +1,1019 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="국민대학교 경영정보학과 학생 노윤하의 개인 홈페이지">
+  <meta name="author" content="노윤하">
+  <title>About Me | 노윤하</title>
+
+  <!-- 링크 공유 시 미리보기(Open Graph) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="About Me | 노윤하">
+  <meta property="og:description" content="국민대학교 경영정보학과에 재학 중인 노윤하의 개인 홈페이지입니다.">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="About Me | 노윤하">
+  <meta name="twitter:description" content="국민대학교 경영정보학과에 재학 중인 노윤하의 개인 홈페이지입니다.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      font-family: "Malgun Gothic", sans-serif;
+      color: #202b42;
+      background: #ffffff;
+      line-height: 1.8;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* 키보드 사용자를 위한 본문 바로가기 */
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 10px;
+      z-index: 200;
+      background: #5575ef;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .skip-link:focus {
+      left: 16px;
+    }
+
+    /* 포커스 가시성 (키보드 탐색) */
+    a:focus-visible,
+    .button:focus-visible {
+      outline: 3px solid #91a8ff;
+      outline-offset: 3px;
+    }
+
+    .container {
+      width: min(1050px, 88%);
+      margin: auto;
+    }
+
+    /* 상단 메뉴 */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid #e8ecf4;
+      backdrop-filter: blur(12px);
+    }
+
+    nav {
+      height: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 900;
+      color: #243b70;
+    }
+
+    .logo span {
+      color: #5575ef;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .nav-links a:hover {
+      color: #5575ef;
+    }
+
+    /* 첫 화면 */
+    .hero {
+      min-height: 580px;
+      display: flex;
+      align-items: center;
+      color: white;
+      background:
+        radial-gradient(circle at 80% 20%, #5879dc50, transparent 35%),
+        linear-gradient(135deg, #101a33, #243e72);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      align-items: center;
+      gap: 50px;
+      padding-top: 70px;
+      padding-bottom: 70px;
+    }
+
+    .eyebrow {
+      color: #aabaff;
+      font-size: 12px;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(38px, 5vw, 58px);
+      line-height: 1.35;
+      letter-spacing: -2px;
+      margin: 22px 0;
+    }
+
+    h1 span {
+      color: #91a8ff;
+    }
+
+    .hero p {
+      color: #d1d9eb;
+      font-size: 15px;
+      max-width: 540px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 12px 23px;
+      background: #5575ef;
+      color: white;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      background: #7390ff;
+      transform: translateY(-2px);
+    }
+
+    .profile-art {
+      width: 245px;
+      height: 245px;
+      margin: auto;
+      border: 1px solid #8ca1dd80;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .profile-art::before,
+    .profile-art::after {
+      content: "";
+      position: absolute;
+      border: 1px solid #8ca1dd45;
+      border-radius: 50%;
+    }
+
+    .profile-art::before {
+      width: 190px;
+      height: 190px;
+    }
+
+    .profile-art::after {
+      width: 135px;
+      height: 135px;
+    }
+
+    .profile-icon {
+      width: 100px;
+      height: 100px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, #7892ff, #4260d6);
+      display: grid;
+      place-items: center;
+      font-size: 40px;
+      z-index: 1;
+      box-shadow: 0 0 40px #5575ef60;
+    }
+
+    /* 공통 섹션 */
+    section {
+      padding: 85px 0;
+    }
+
+    .section-label {
+      color: #5575ef;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 32px;
+      line-height: 1.4;
+      letter-spacing: -1px;
+      margin-bottom: 15px;
+    }
+
+    .section-desc {
+      color: #5e6880;
+      font-size: 14px;
+      max-width: 650px;
+    }
+
+    /* 자기소개 */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-text p {
+      margin-top: 17px;
+      color: #515b73;
+      font-size: 14px;
+    }
+
+    .info-card {
+      padding: 28px;
+      border: 1px solid #e6eaf2;
+      border-radius: 14px;
+      background: #f7f9fd;
+    }
+
+    .info-row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid #e3e8f1;
+      font-size: 13px;
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-row span:first-child {
+      color: #81899b;
+    }
+
+    .info-row span:last-child {
+      font-weight: bold;
+    }
+
+    /* 관심 분야 */
+    .gray {
+      background: #f6f8fc;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 35px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e7ebf3;
+      border-radius: 13px;
+      padding: 27px;
+      transition: 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px #192e500d;
+    }
+
+    .card-icon {
+      font-size: 31px;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      font-size: 17px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #5e6880;
+      font-size: 13px;
+    }
+
+    /* 목표 */
+    .goal-box {
+      padding: 40px;
+      color: white;
+      background: linear-gradient(125deg, #192847, #304e8a);
+      border-radius: 17px;
+    }
+
+    .goal-box p {
+      color: #d0d8eb;
+      font-size: 14px;
+      max-width: 750px;
+    }
+
+    .keywords {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .keywords span {
+      border: 1px solid #ffffff40;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    /* 하단 */
+    .contact {
+      text-align: center;
+    }
+
+    .contact .section-desc {
+      margin: auto;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 20px;
+      border: 1px solid #d8def0;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #39456a;
+      transition: 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: #5575ef;
+      color: #5575ef;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      padding: 25px;
+      background: #f4f6fa;
+      text-align: center;
+      font-size: 12px;
+      color: #858da0;
+    }
+
+    /* 방명록 */
+    .guestbook-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 40px;
+      margin-top: 35px;
+      align-items: start;
+    }
+
+    .gb-form {
+      padding: 28px;
+      border: 1px solid #e6eaf2;
+      border-radius: 14px;
+      background: #f7f9fd;
+    }
+
+    .gb-field {
+      margin-bottom: 16px;
+    }
+
+    .gb-field label {
+      display: block;
+      font-size: 12px;
+      font-weight: bold;
+      color: #4a536b;
+      margin-bottom: 7px;
+    }
+
+    .gb-field input,
+    .gb-field textarea {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1px solid #d8def0;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 13px;
+      color: #202b42;
+      background: #fff;
+      resize: vertical;
+    }
+
+    .gb-field input:focus,
+    .gb-field textarea:focus {
+      outline: none;
+      border-color: #5575ef;
+      box-shadow: 0 0 0 3px #91a8ff40;
+    }
+
+    .gb-counter {
+      display: block;
+      text-align: right;
+      font-size: 11px;
+      color: #81899b;
+      margin-top: 5px;
+    }
+
+    .gb-submit {
+      border: none;
+      cursor: pointer;
+      padding: 12px 23px;
+      background: #5575ef;
+      color: #fff;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: bold;
+      font-family: inherit;
+      transition: 0.2s;
+    }
+
+    .gb-submit:hover {
+      background: #7390ff;
+      transform: translateY(-2px);
+    }
+
+    .gb-submit:disabled {
+      background: #a9b6e6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .gb-status {
+      margin-top: 14px;
+      font-size: 12px;
+      min-height: 18px;
+    }
+
+    .gb-status.ok {
+      color: #2f8a4e;
+    }
+
+    .gb-status.err {
+      color: #d14343;
+    }
+
+    .gb-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .gb-empty {
+      color: #81899b;
+      font-size: 13px;
+      padding: 10px 0;
+    }
+
+    .gb-item {
+      padding: 18px 20px;
+      border: 1px solid #e7ebf3;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .gb-item-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 7px;
+    }
+
+    .gb-nick {
+      font-size: 14px;
+      font-weight: bold;
+      color: #243b70;
+      word-break: break-all;
+    }
+
+    .gb-time {
+      font-size: 11px;
+      color: #9aa2b5;
+      white-space: nowrap;
+    }
+
+    .gb-msg {
+      font-size: 13px;
+      color: #4a536b;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    @media (max-width: 700px) {
+      .guestbook-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .7s, transform .7s;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 700px) {
+      .nav-links {
+        gap: 12px;
+        font-size: 11px;
+      }
+
+      .logo {
+        font-size: 16px;
+      }
+
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        gap: 40px;
+      }
+
+      .profile-art {
+        width: 200px;
+        height: 200px;
+      }
+
+      .profile-art::before {
+        width: 160px;
+        height: 160px;
+      }
+
+      .profile-art::after {
+        width: 120px;
+        height: 120px;
+      }
+
+      .profile-icon {
+        width: 80px;
+        height: 80px;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      h2 {
+        font-size: 27px;
+      }
+
+      .goal-box {
+        padding: 27px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<a href="#main" class="skip-link">본문 바로가기</a>
+
+<header>
+  <nav class="container">
+    <a href="#home" class="logo">ABOUT<span>ME.</span></a>
+    <div class="nav-links">
+      <a href="#about">소개</a>
+      <a href="#interests">관심 분야</a>
+      <a href="#goal">목표</a>
+      <a href="#guestbook">방명록</a>
+      <a href="#contact">마무리</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- 메인 화면 -->
+  <section class="hero" id="home">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">KOOKMIN UNIVERSITY · STUDENT</div>
+        <h1>
+          안녕하세요.<br>
+          <span>저를 소개합니다.</span>
+        </h1>
+        <p>
+          국민대학교 경영정보학과에 재학 중인 노윤하입니다.
+          경영과 정보기술이 만나는 지점에 관심을 가지고,
+          새로운 것을 배우며 성장하고 있습니다.
+        </p>
+        <a href="#about" class="button">ABOUT ME ↓</a>
+      </div>
+
+      <div class="profile-art" aria-hidden="true">
+        <div class="profile-icon">✦</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 자기소개 -->
+  <section id="about">
+    <div class="container about-grid">
+      <div class="about-text reveal">
+        <div class="section-label">01 / INTRODUCTION</div>
+        <h2>경영과 기술을 함께<br>배워 나가는 학생</h2>
+        <p>
+          저는 국민대학교 경영정보학과에서 공부하며
+          기업의 경영 활동과 정보기술이 어떻게 연결되는지 알아가고 있습니다.
+        </p>
+        <p>
+          대학 생활을 통해 다양한 경험을 쌓고,
+          전공 지식을 실제 문제 해결에 활용할 수 있는 역량을
+          키워 나가는 것이 저의 목표입니다.
+        </p>
+      </div>
+
+      <div class="info-card reveal">
+        <div class="info-row">
+          <span>소속</span>
+          <span>국민대학교</span>
+        </div>
+        <div class="info-row">
+          <span>전공</span>
+          <span>경영정보학과</span>
+        </div>
+        <div class="info-row">
+          <span>관심 분야</span>
+          <span>경영 · IT · 데이터</span>
+        </div>
+        <div class="info-row">
+          <span>중요한 가치</span>
+          <span>배움 · 도전 · 성장</span>
+        </div>
+        <div class="info-row">
+          <span>현재의 목표</span>
+          <span>전공 역량과 경험 쌓기</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 관심 분야 -->
+  <section class="gray" id="interests">
+    <div class="container">
+      <div class="section-label">02 / MY INTERESTS</div>
+      <h2>관심을 가지고 있는 분야</h2>
+      <p class="section-desc">
+        경영정보학과의 특성을 바탕으로 경영과 IT를 연결하는 다양한 분야를 탐색합니다.
+      </p>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">📊</div>
+          <h3>데이터 분석</h3>
+          <p>
+            데이터를 분석해 의미 있는 정보를 발견하고,
+            합리적인 의사결정을 내리는 방법에 관심이 있습니다.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">💻</div>
+          <h3>정보기술</h3>
+          <p>
+            프로그래밍과 정보시스템을 배우고,
+            기술을 활용해 다양한 문제를 해결하는 방법을 탐구합니다.
+          </p>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-icon" aria-hidden="true">📈</div>
+          <h3>디지털 비즈니스</h3>
+          <p>
+            디지털 기술이 기업의 운영과 경영전략,
+            고객 경험을 어떻게 변화시키는지 알아가고 싶습니다.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 목표 -->
+  <section id="goal">
+    <div class="container">
+      <div class="goal-box reveal">
+        <div class="section-label">03 / MY GOAL</div>
+        <h2>배우고 경험하며 성장하기</h2>
+        <p>
+          대학 생활 동안 전공 공부에 충실하면서 다양한 활동과 프로젝트에
+          도전하고 싶습니다. 경영학적 사고와 IT 역량을 함께 발전시켜
+          문제를 분석하고 실질적인 해결책을 제안할 수 있는 사람으로
+          성장하는 것이 저의 목표입니다.
+        </p>
+        <div class="keywords">
+          <span>Business</span>
+          <span>Information Technology</span>
+          <span>Data</span>
+          <span>Continuous Growth</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 방명록 -->
+  <section class="gray" id="guestbook">
+    <div class="container">
+      <div class="section-label">05 / GUESTBOOK</div>
+      <h2>짧은 방명록</h2>
+      <p class="section-desc">
+        짧은 응원이나 질문을 남겨 주세요. 별명과 한 줄 메시지를 남길 수 있습니다.
+      </p>
+
+      <div class="guestbook-grid">
+        <!-- 입력 영역 -->
+        <form class="gb-form reveal" id="gb-form" novalidate>
+          <div class="gb-field">
+            <label for="gb-nick">별명 (2~12자)</label>
+            <input type="text" id="gb-nick" name="nickname"
+                   maxlength="12" autocomplete="off"
+                   placeholder="별명을 입력하세요">
+          </div>
+
+          <div class="gb-field">
+            <label for="gb-msg">메시지 (최대 100자)</label>
+            <textarea id="gb-msg" name="message" rows="3"
+                      maxlength="100"
+                      placeholder="한 줄 메시지를 남겨 주세요"></textarea>
+            <span class="gb-counter" id="gb-counter" aria-live="polite">0 / 100</span>
+          </div>
+
+          <button type="submit" class="gb-submit" id="gb-submit">등록하기</button>
+
+          <p class="gb-status" id="gb-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <!-- 결과 영역 -->
+        <div class="gb-list reveal" id="gb-list" aria-live="polite">
+          <p class="gb-empty">메시지를 불러오는 중…</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 마무리 -->
+  <section class="contact" id="contact">
+    <div class="container reveal">
+      <div class="section-label">04 / THANK YOU</div>
+      <h2>제 홈페이지를 방문해 주셔서 감사합니다.</h2>
+      <p class="section-desc">
+        앞으로도 다양한 경험을 통해 배우고 성장하는 모습을 만들어 가겠습니다.
+        궁금한 점이 있다면 아래로 편하게 연락 주세요.
+      </p>
+
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:your-email@example.com">
+          <span aria-hidden="true">✉️</span> 이메일
+        </a>
+        <a class="contact-link" href="https://github.com/nxyunha" target="_blank" rel="noopener noreferrer">
+          <span aria-hidden="true">🔗</span> GitHub
+        </a>
+      </div>
+
+      <div style="margin-top: 30px;">
+        <a href="#home" class="button">맨 위로 돌아가기 ↑</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>PERSONAL WEBSITE · KOOKMIN UNIVERSITY</p>
+  <p>© <span id="year"></span> About Me. All rights reserved.</p>
+</footer>
+
+<script>
+  // 현재 연도 자동 표시
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+  // 스크롤할 때 콘텐츠가 자연스럽게 나타나는 효과
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".reveal").forEach((element) => {
+    observer.observe(element);
+  });
+</script>
+
+<!-- 방명록: Supabase JS 클라이언트 (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // ===== Supabase 설정 =====
+  // 아래 두 값은 공개(anon) 키입니다. 브라우저에 노출되어도 되는 공개용 값이며,
+  // 데이터는 Supabase의 RLS(Row Level Security)로 보호합니다.
+  // service_role 등 비밀 키는 절대 여기에 넣지 마세요.
+  const SUPABASE_URL = "YOUR_SUPABASE_URL";       // 예: https://xxxx.supabase.co
+  const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+  const NICK_MIN = 2;
+  const NICK_MAX = 12;
+  const MSG_MAX = 100;
+
+  const form = document.getElementById("gb-form");
+  const nickInput = document.getElementById("gb-nick");
+  const msgInput = document.getElementById("gb-msg");
+  const counter = document.getElementById("gb-counter");
+  const statusEl = document.getElementById("gb-status");
+  const listEl = document.getElementById("gb-list");
+  const submitBtn = document.getElementById("gb-submit");
+
+  // 남은 글자 수 표시
+  msgInput.addEventListener("input", () => {
+    counter.textContent = msgInput.value.length + " / " + MSG_MAX;
+  });
+
+  // 상태 메시지 표시 (성공/실패)
+  function setStatus(message, type) {
+    statusEl.textContent = message;
+    statusEl.className = "gb-status" + (type ? " " + type : "");
+  }
+
+  // 작성 시각 포맷
+  function formatTime(iso) {
+    try {
+      const d = new Date(iso);
+      return d.toLocaleString("ko-KR", {
+        year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit"
+      });
+    } catch (e) {
+      return "";
+    }
+  }
+
+  // 방명록 항목 DOM 생성 (textContent 로만 출력 → HTML 실행 안 됨, XSS 방지)
+  function buildItem(entry) {
+    const item = document.createElement("div");
+    item.className = "gb-item";
+
+    const head = document.createElement("div");
+    head.className = "gb-item-head";
+
+    const nick = document.createElement("span");
+    nick.className = "gb-nick";
+    nick.textContent = entry.nickname;   // innerHTML 사용 안 함
+
+    const time = document.createElement("span");
+    time.className = "gb-time";
+    time.textContent = formatTime(entry.created_at);
+
+    head.appendChild(nick);
+    head.appendChild(time);
+
+    const msg = document.createElement("p");
+    msg.className = "gb-msg";
+    msg.textContent = entry.message;     // innerHTML 사용 안 함
+
+    item.appendChild(head);
+    item.appendChild(msg);
+    return item;
+  }
+
+  // 목록 렌더링
+  function renderList(entries) {
+    listEl.textContent = "";  // 기존 내용 비우기
+    if (!entries || entries.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "gb-empty";
+      empty.textContent = "아직 남겨진 메시지가 없어요.";
+      listEl.appendChild(empty);
+      return;
+    }
+    entries.forEach((entry) => listEl.appendChild(buildItem(entry)));
+  }
+
+  // 설정이 비어 있으면 안내만 하고 네트워크 호출은 하지 않음
+  const isConfigured =
+    SUPABASE_URL && SUPABASE_URL.indexOf("http") === 0 &&
+    SUPABASE_ANON_KEY && SUPABASE_ANON_KEY !== "YOUR_SUPABASE_ANON_KEY";
+
+  let supabase = null;
+  if (isConfigured && window.supabase) {
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+
+  // 목록 불러오기 (최신순)
+  async function loadEntries() {
+    if (!supabase) {
+      renderList([]);
+      setStatus("방명록을 사용하려면 Supabase 설정이 필요합니다.", "err");
+      return;
+    }
+    try {
+      const { data, error } = await supabase
+        .from("guestbook")
+        .select("id, nickname, message, created_at")
+        .order("created_at", { ascending: false })
+        .limit(50);
+      if (error) throw error;
+      renderList(data);
+    } catch (e) {
+      listEl.textContent = "";
+      const p = document.createElement("p");
+      p.className = "gb-empty";
+      p.textContent = "메시지를 불러오지 못했어요. 잠시 후 다시 시도해 주세요.";
+      listEl.appendChild(p);
+    }
+  }
+
+  // 등록
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const nickname = nickInput.value.trim();
+    const message = msgInput.value.trim();
+
+    // 브라우저 1차 검사
+    if (!nickname || !message) {
+      setStatus("별명과 메시지를 모두 입력해 주세요.", "err");
+      return;
+    }
+    if (nickname.length < NICK_MIN || nickname.length > NICK_MAX ||
+        message.length > MSG_MAX) {
+      setStatus("별명은 2~12자, 메시지는 100자 이내로 입력해 주세요.", "err");
+      return;
+    }
+    if (!supabase) {
+      setStatus("방명록을 사용하려면 Supabase 설정이 필요합니다.", "err");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    setStatus("등록 중…", "");
+
+    try {
+      // Supabase DB 제약(2차 검사)이 추가로 길이를 확인함
+      const { error } = await supabase
+        .from("guestbook")
+        .insert({ nickname: nickname, message: message });
+      if (error) throw error;
+
+      nickInput.value = "";
+      msgInput.value = "";
+      counter.textContent = "0 / " + MSG_MAX;
+      setStatus("등록되었습니다. 감사합니다!", "ok");
+      await loadEntries();
+    } catch (e) {
+      setStatus("등록하지 못했어요. 잠시 후 다시 시도해 주세요.", "err");
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+
+  // 최초 로딩
+  loadEntries();
+</script>
+
+</body>
+</html>
