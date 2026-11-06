@@ -4,7 +4,14 @@
 [build]
   # 빌드 도구 없는 정적 사이트이므로 빌드 명령은 없다.
   publish = "public"
+  functions = "netlify/functions"
 
-# 참고: 브라우저 JS 가 Supabase anon 공개 키로 직접 통신하는 방식이라
-# 서버 함수(functions)는 사용하지 않는다.
-# anon 키는 공개되어도 되는 키이며, 데이터는 Supabase RLS 로 보호한다.
+# 브라우저가 깔끔한 경로(/api/guestbook)로 서버 함수를 호출하도록 연결한다.
+[[redirects]]
+  from = "/api/guestbook"
+  to = "/.netlify/functions/guestbook"
+  status = 200
+
+# 참고: 서버 전용 키(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)는
+# 이 파일이나 공개 코드에 적지 않고 Netlify 대시보드의
+# Environment variables 에 등록한다. 브라우저에는 키가 노출되지 않는다.

@@ -1,0 +1,9 @@
+{
+  "name": "nxyunha-homepage",
+  "version": "1.0.0",
+  "description": "개인 홈페이지 + 방명록 (Netlify 서버 함수 경유 Supabase)",
+  "private": true,
+  "dependencies": {
+    "@supabase/supabase-js": "^2"
+  }
+}

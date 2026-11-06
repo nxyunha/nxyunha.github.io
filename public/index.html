@@ -846,15 +846,11 @@
   });
 </script>
 
-<!-- 방명록: Supabase JS 클라이언트 (CDN) -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- 방명록: 브라우저는 Netlify 서버 함수(/api/guestbook)만 호출한다. -->
+<!-- Supabase 키는 브라우저에 두지 않고 서버 함수가 환경변수로 사용한다. -->
 <script>
-  // ===== Supabase 설정 =====
-  // 아래 두 값은 공개(anon) 키입니다. 브라우저에 노출되어도 되는 공개용 값이며,
-  // 데이터는 Supabase의 RLS(Row Level Security)로 보호합니다.
-  // service_role 등 비밀 키는 절대 여기에 넣지 마세요.
-  const SUPABASE_URL = "YOUR_SUPABASE_URL";       // 예: https://xxxx.supabase.co
-  const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+  // ===== 방명록 설정 =====
+  const API_URL = "/api/guestbook";   // Netlify 서버 함수 (netlify.toml 리다이렉트)
 
   const NICK_MIN = 2;
   const NICK_MAX = 12;
@@ -933,31 +929,13 @@
     entries.forEach((entry) => listEl.appendChild(buildItem(entry)));
   }
 
-  // 설정이 비어 있으면 안내만 하고 네트워크 호출은 하지 않음
-  const isConfigured =
-    SUPABASE_URL && SUPABASE_URL.indexOf("http") === 0 &&
-    SUPABASE_ANON_KEY && SUPABASE_ANON_KEY !== "YOUR_SUPABASE_ANON_KEY";
-
-  let supabase = null;
-  if (isConfigured && window.supabase) {
-    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  }
-
-  // 목록 불러오기 (최신순)
+  // 목록 불러오기 (최신순) — 서버 함수 GET /api/guestbook
   async function loadEntries() {
-    if (!supabase) {
-      renderList([]);
-      setStatus("방명록을 사용하려면 Supabase 설정이 필요합니다.", "err");
-      return;
-    }
     try {
-      const { data, error } = await supabase
-        .from("guestbook")
-        .select("id, nickname, message, created_at")
-        .order("created_at", { ascending: false })
-        .limit(50);
-      if (error) throw error;
-      renderList(data);
+      const res = await fetch(API_URL, { method: "GET" });
+      if (!res.ok) throw new Error("load failed");
+      const data = await res.json();
+      renderList(data.entries || []);
     } catch (e) {
       listEl.textContent = "";
       const p = document.createElement("p");
@@ -984,27 +962,38 @@
       setStatus("별명은 2~12자, 메시지는 100자 이내로 입력해 주세요.", "err");
       return;
     }
-    if (!supabase) {
-      setStatus("방명록을 사용하려면 Supabase 설정이 필요합니다.", "err");
-      return;
-    }
 
     submitBtn.disabled = true;
     setStatus("등록 중…", "");
 
     try {
-      // Supabase DB 제약(2차 검사)이 추가로 길이를 확인함
-      const { error } = await supabase
-        .from("guestbook")
-        .insert({ nickname: nickname, message: message });
-      if (error) throw error;
+      // 서버 함수 POST /api/guestbook (서버가 길이를 다시 검증함)
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nickname: nickname, message: message })
+      });
 
+      if (!res.ok) {
+        // 서버가 보낸 안내 메시지가 있으면 사용
+        let msg = "등록하지 못했어요. 잠시 후 다시 시도해 주세요.";
+        try {
+          const err = await res.json();
+          if (err && err.error) msg = err.error;
+        } catch (ignore) {}
+        // 실패 시 입력 내용은 그대로 유지한다.
+        setStatus(msg, "err");
+        return;
+      }
+
+      // 성공했을 때만 입력란을 비운다.
       nickInput.value = "";
       msgInput.value = "";
       counter.textContent = "0 / " + MSG_MAX;
       setStatus("등록되었습니다. 감사합니다!", "ok");
-      await loadEntries();
+      await loadEntries();   // 등록 성공 후 목록 다시 불러오기
     } catch (e) {
+      // 네트워크 오류 등 — 입력 내용 유지
       setStatus("등록하지 못했어요. 잠시 후 다시 시도해 주세요.", "err");
     } finally {
       submitBtn.disabled = false;

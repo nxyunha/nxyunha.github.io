@@ -150,6 +150,13 @@ create policy "anyone can insert"
 - [ ] 브라우저 실제 동작 검사(섹션 10 전체)
 - [ ] 커밋·push
 
+## 배포 결과 (Netlify)
+
+- 배포 서비스: Netlify
+- 프로젝트(사이트) 이름: `coruscating-bunny-e8d1f0`
+- 배포 주소: https://coruscating-bunny-e8d1f0.netlify.app/
+- 배포 상태: 성공 (2026-11-06 확인)
+
 ## 12. 배포 구성 메모 (1번 방식: 브라우저 직접 통신)
 
 - 공개 폴더: `public/` (여기에 있는 것만 배포됨). 현재 `public/index.html` 1개.
