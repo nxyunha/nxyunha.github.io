@@ -6,7 +6,7 @@
 //
 // 비밀 키는 코드에 적지 않고 환경변수로만 읽는다.
 //   - SUPABASE_URL
-//   - SUPABASE_SERVICE_ROLE_KEY  (없으면 SUPABASE_SECRET_KEY 를 대체로 사용)
+//   - SUPABASE_SECRET_KEY  (우선 사용. 없으면 SUPABASE_SERVICE_ROLE_KEY 로 폴백)
 //
 // 참고: 서버 전용 키(기존 service_role JWT 또는 새 sb_secret_ 키)는
 // 둘 다 service_role 권한으로 동작하며 RLS 를 우회한다. 따라서 이 키는
@@ -37,8 +37,10 @@ function json(statusCode, body) {
 // 환경변수로 Supabase 클라이언트 생성 (키는 코드에 없음)
 function getClient() {
   const url = process.env.SUPABASE_URL;
+  // 새 형식 secret 키(SUPABASE_SECRET_KEY)를 우선 사용하고,
+  // 없을 때만 레거시 service_role 키(SUPABASE_SERVICE_ROLE_KEY)로 폴백한다.
   const key =
-    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY;
+    process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!url || !key) {
     return null; // 환경변수 미설정
