@@ -616,6 +616,29 @@
         padding: 27px 22px;
       }
     }
+
+    /* 첫 화면 타이핑 애니메이션 (기존 h1/span 스타일은 그대로 상속) */
+    /* 첫 줄 '안녕하세요.'는 원래 일반 텍스트였으므로 h1 기본 색상을 유지.
+       이름(.type-name)만 기존 'h1 span' 파란색을 그대로 사용한다. */
+    #hero-typing .type-line:not(.type-name) {
+      color: inherit;
+    }
+    #hero-typing .type-cursor {
+      display: inline-block;
+      font-weight: 400;
+      margin-left: 2px;
+      opacity: 1;
+    }
+    #hero-typing.typing-done .type-cursor {
+      animation: hero-cursor-blink 1s step-end infinite;
+    }
+    @keyframes hero-cursor-blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      #hero-typing.typing-done .type-cursor { animation: none; }
+    }
   </style>
 </head>
 
@@ -643,9 +666,9 @@
     <div class="container hero-grid">
       <div>
         <div class="eyebrow">KOOKMIN UNIVERSITY · STUDENT</div>
-        <h1>
-          안녕하세요.<br>
-          <span>노윤하입니다.</span>
+        <h1 id="hero-typing" aria-label="안녕하세요. 노윤하입니다.">
+          <span class="type-line" data-text="안녕하세요."></span><br>
+          <span class="type-line type-name" data-text="노윤하입니다."></span><span class="type-cursor" aria-hidden="true">|</span>
         </h1>
         <p>
           국민대학교 경영정보학과에 재학 중인 노윤하입니다.
@@ -726,8 +749,7 @@
           <div class="card-icon" aria-hidden="true">💻</div>
           <h3>정보기술</h3>
           <p>
-            프로그래밍과 정보시스템을 배우고,
-            기술을 활용해 다양한 문제를 해결하는 방법을 탐구합니다.
+           소프트웨어 개발, 데이터베이스, 인공지능 및 정보시스템 등 IT 기술을 학습하고, 이를 경영 환경에 접목해 업무 효율성을 높이고 다양한 비즈니스 문제를 해결하는 방법을 탐구합니다.
           </p>
         </article>
 
@@ -855,6 +877,50 @@
   document.querySelectorAll(".reveal").forEach((element) => {
     observer.observe(element);
   });
+
+  // 첫 화면 제목 타이핑 애니메이션 (새로고침 시 매번 처음부터 재생)
+  (function () {
+    const hero = document.getElementById("hero-typing");
+    if (!hero) return;
+    const cursor = hero.querySelector(".type-cursor");
+    const lines = Array.from(hero.querySelectorAll(".type-line"));
+    // 한글 등 유니코드를 코드포인트 단위로 분해해 한 글자씩 타이핑
+    const segments = lines.map((el) => ({
+      el,
+      chars: Array.from(el.dataset.text || ""),
+    }));
+    // 시작 전 내용 비우기
+    segments.forEach((seg) => { seg.el.textContent = ""; });
+    // 커서를 첫 줄 바로 뒤로 옮겨 시작 (줄마다 해당 줄 끝으로 따라오게 함)
+    if (cursor && segments[0]) {
+      segments[0].el.insertAdjacentElement("afterend", cursor);
+    }
+
+    const STEP_MS = 150; // 글자당 약 0.15초
+    let line = 0, index = 0;
+
+    function typeNext() {
+      if (line >= segments.length) {
+        hero.classList.add("typing-done"); // 완료 후 커서 깜빡임
+        return;
+      }
+      const seg = segments[line];
+      if (index < seg.chars.length) {
+        seg.el.textContent += seg.chars[index];
+        index++;
+        setTimeout(typeNext, STEP_MS);
+      } else {
+        line++;
+        index = 0;
+        // 다음 줄로 넘어가면 커서도 그 줄 끝으로 이동
+        if (cursor && segments[line]) {
+          segments[line].el.insertAdjacentElement("afterend", cursor);
+        }
+        typeNext();
+      }
+    }
+    setTimeout(typeNext, STEP_MS);
+  })();
 </script>
 
 <!-- 방명록: 브라우저는 Netlify 서버 함수(/api/guestbook)만 호출한다. -->
